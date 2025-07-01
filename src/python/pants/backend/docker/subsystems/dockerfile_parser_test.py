@@ -214,6 +214,10 @@ def test_baseimage_tags(rule_runner: RuleRunner) -> None:
                 "v0.54.0@sha256:d1f0463b35135852308ea815c2ae54c1734b876d90288ce35828aeeff9899f9d\n"
                 "FROM $PYTHON_VERSION AS python\n"
                 "FROM python:$VERSION\n"
+                "FROM $DOCKER_IO_MIRROR/python:latest\n"
+                "FROM ${DOCKER_IO_MIRROR}/python:latest\n"
+                "FROM $DOCKER_IO_MIRROR/dperson/samba@sha256:e1d2a7366690749a7be06f72bdbf6a5a7d15726fc84e4e4f41e967214516edfd\n"
+                "FROM $PYTHON_REPO@sha256:e1d2a7366690749a7be06f72bdbf6a5a7d15726fc84e4e4f41e967214516edfd\n"
             ),
         }
     )
@@ -226,6 +230,10 @@ def test_baseimage_tags(rule_runner: RuleRunner) -> None:
         "stage3 v0.54.0",
         "python build-arg:PYTHON_VERSION",  # Parse tag from build arg.
         "stage5 $VERSION",
+        "stage6 latest",
+        "stage7 latest",
+        "stage8",
+        "stage9",
     )
 
 
